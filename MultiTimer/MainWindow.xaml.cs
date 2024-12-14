@@ -13,16 +13,30 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+// include lib
+
 namespace MultiTimer
 {
     /// <summary>
     /// MainWindow.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+
+        public void SetImage()
+        {
+            var bitmapImage = new BitmapImage();
+            bitmapImage.BeginInit();
+            bitmapImage.UriSource = new Uri("pack://application:,,,/Images/sample_image.jpg", UriKind.Absolute);
+            bitmapImage.CacheOption = BitmapCacheOption.OnLoad; // 캐시 활성화
+            bitmapImage.EndInit();
+
+            ThumbnailImage.Source = bitmapImage;  // Image 컨트롤에 설정
+        }
     }
 }
+
