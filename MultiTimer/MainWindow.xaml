@@ -103,21 +103,30 @@
 
                             <WrapPanel Margin="0,0,0,20">
                                 <Button Content="Start" Command="{Binding StartCommand}" 
-                    Width="100" Height="40" Margin="5" 
-                    Background="#3f51b5" Foreground="White"
-                    BorderBrush="#3f51b5" BorderThickness="2" Padding="10,5"/>
+                                    Width="100" Height="40" Margin="5" 
+                                    Background="#3f51b5" Foreground="White"
+                                    BorderBrush="#3f51b5" BorderThickness="2" Padding="10,5"/>
                                 <Button Content="Pause" Command="{Binding PauseCommand}" 
-                    Width="100" Height="40" Margin="5" 
-                    Background="#f44336" Foreground="White"
-                    BorderBrush="#f44336" BorderThickness="2" Padding="10,5"/>
+                                    Width="100" Height="40" Margin="5" 
+                                    Background="#f44336" Foreground="White"
+                                    BorderBrush="#f44336" BorderThickness="2" Padding="10,5"/>
                                 <Button Content="Reset" Command="{Binding ResetCommand}" 
-                    Width="100" Height="40" Margin="5" 
-                    Background="#8bc34a" Foreground="White"
-                    BorderBrush="#8bc34a" BorderThickness="2" Padding="10,5"/>
+                                    Width="100" Height="40" Margin="5" 
+                                    Background="#8bc34a" Foreground="White"
+                                    BorderBrush="#8bc34a" BorderThickness="2" Padding="10,5"/>
                             </WrapPanel>
                             <mah:MetroProgressBar Value="{Binding Progress}" Maximum="100" Height="20" Margin="0,10,0,0"
                               Foreground="LightPink" Background="White" BorderBrush="Black" BorderThickness="1">
                             </mah:MetroProgressBar>
+                            <ComboBox ItemsSource="{Binding AvailableKeys}"
+                                SelectedItem="{Binding SelectedKey}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Width="200"
+                                Margin="0,20,0,0"
+                                Foreground="Black"
+                                DisplayMemberPath="Value"
+                                SelectedValuePath="Key" />
                         </StackPanel>
                     </Border>
                 </DataTemplate>

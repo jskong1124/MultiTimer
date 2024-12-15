@@ -1,7 +1,12 @@
-﻿using System;
+﻿using NHotkey;
+using NHotkey.Wpf;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using System.Windows.Threading;
 using System.Xml.Linq;
@@ -35,6 +40,10 @@ namespace MultiTimer
             _distpatcherTimer = new DispatcherTimer();
             _distpatcherTimer.Interval = TimeSpan.FromMilliseconds(10); // 1초마다 진행률 업데이트
             _distpatcherTimer.Tick += DistpatcherTimer_Tick;
+
+            _hotkeyName = "HKNAME_" + Guid.NewGuid();
+            Console.WriteLine("hk ::: " + _hotkeyName);
+            //RegisterHotkey();
         }
         public ICommand StartCommand { get; }
         public ICommand PauseCommand { get; }
@@ -48,7 +57,7 @@ namespace MultiTimer
                 if(_timerModel.Name != value)
                 {
                     _timerModel.Name = value;
-                    OnPropertyChanged(nameof(Name));  // 속성 변경 알리기
+                    OnPropertyChanged();  // 속성 변경 알리기
                 }
             }
         }
@@ -68,7 +77,7 @@ namespace MultiTimer
                     if(_timerModel.TargetTime != timeSpan)
                     {
                         _timerModel.TargetTime = timeSpan;
-                        OnPropertyChanged(nameof(TargetTime));
+                        OnPropertyChanged();
                     }
                 }
             }
@@ -175,7 +184,7 @@ namespace MultiTimer
                 if (_progress != value)
                 {
                     _progress = Math.Min(value, 100.0);
-                    OnPropertyChanged(nameof(Progress));  // 속성 변경 알리기
+                    OnPropertyChanged();  // 속성 변경 알리기
                 }
             }
         }
@@ -199,9 +208,49 @@ namespace MultiTimer
 
         // PropertyChanged 이벤트를 구현하여 바인딩을 위한 알림
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
+
+
+        private readonly string _hotkeyName;
+
+
+        private void RegisterHotkey()
+        {
+            HotkeyManager.Current.AddOrReplace(_hotkeyName, _selectedKey.Key, ModifierKeys.None, OnHotkeyPressed);
+        }
+
+        public void ReleaseHotkey()
+        {
+            // 핫키 제거
+            HotkeyManager.Current.Remove(_hotkeyName);
+        }
+
+        private void OnHotkeyPressed(object sender, HotkeyEventArgs e)
+        {
+            Start();
+        }
+
+        private KeyValuePair<Key, string> _selectedKey;
+        public KeyValuePair<Key, string> SelectedKey
+        {
+            get => _selectedKey;
+            set
+            {
+                if (_selectedKey.Equals(value)) return;
+                _selectedKey = value;
+                OnPropertyChanged();
+                RegisterHotkey();
+                Console.WriteLine(_selectedKey.Key);
+                Console.WriteLine(_selectedKey.Value);
+            }
+        }
+
+        public IEnumerable<KeyValuePair<Key, string>> AvailableKeys => KeyList.Get104Keys();
     }
 }
