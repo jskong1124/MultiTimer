@@ -192,7 +192,7 @@ namespace MultiTimer
         // 타이머가 진행될 때마다 호출
         private void DistpatcherTimer_Tick(object sender, EventArgs e)
         {
-            Console.WriteLine(Name + " ::: " +_timerModel.ElapsedTime.TotalMilliseconds.ToString() + " ??? " + Guid.NewGuid());
+            //Console.WriteLine(Name + " ::: " +_timerModel.ElapsedTime.TotalMilliseconds.ToString() + " ??? " + Guid.NewGuid());
             Console.WriteLine(Name + " ::: " + Progress.ToString());
             if (_timerModel.TargetTime > TimeSpan.Zero && Progress < 100.0)
             {
