@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTimer", "MultiTimer\MultiTimer.csproj", "{95F0935A-6E4E-4353-B0F3-4E7A78D4F3B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiTimer", "MultiTimer\MultiTimer.csproj", "{25AB64A6-03C6-478D-A55D-715B8DEB3737}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{95F0935A-6E4E-4353-B0F3-4E7A78D4F3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95F0935A-6E4E-4353-B0F3-4E7A78D4F3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95F0935A-6E4E-4353-B0F3-4E7A78D4F3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95F0935A-6E4E-4353-B0F3-4E7A78D4F3B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25AB64A6-03C6-478D-A55D-715B8DEB3737}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25AB64A6-03C6-478D-A55D-715B8DEB3737}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25AB64A6-03C6-478D-A55D-715B8DEB3737}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25AB64A6-03C6-478D-A55D-715B8DEB3737}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A329AF59-C252-4581-A5CF-CA5610AF4335}
+		SolutionGuid = {691C5837-49E3-46FE-90D7-276AC17C27B2}
 	EndGlobalSection
 EndGlobal

@@ -1,6 +1,4 @@
-﻿using NHotkey;
-using NHotkey.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -42,8 +40,7 @@ namespace MultiTimer
             _distpatcherTimer.Tick += DistpatcherTimer_Tick;
 
             _hotkeyName = "HKNAME_" + Guid.NewGuid();
-            Console.WriteLine("hk ::: " + _hotkeyName);
-            //RegisterHotkey();
+            Console.WriteLine("hk ::: " + _hotkeyName);            
         }
         public ICommand StartCommand { get; }
         public ICommand PauseCommand { get; }
@@ -54,7 +51,7 @@ namespace MultiTimer
             get => _timerModel.Name;
             set
             {
-                if(_timerModel.Name != value)
+                if (_timerModel.Name != value)
                 {
                     _timerModel.Name = value;
                     OnPropertyChanged();  // 속성 변경 알리기
@@ -72,9 +69,9 @@ namespace MultiTimer
             get => _timerModel.TargetTime.ToString(@"hh\:mm\:ss");
             set
             {
-                if(TimeSpan.TryParse(value, out TimeSpan timeSpan))
+                if (TimeSpan.TryParse(value, out TimeSpan timeSpan))
                 {
-                    if(_timerModel.TargetTime != timeSpan)
+                    if (_timerModel.TargetTime != timeSpan)
                     {
                         _timerModel.TargetTime = timeSpan;
                         OnPropertyChanged();
@@ -213,28 +210,7 @@ namespace MultiTimer
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-
-
-
         private readonly string _hotkeyName;
-
-
-        private void RegisterHotkey()
-        {
-            HotkeyManager.Current.AddOrReplace(_hotkeyName, _selectedKey.Key, ModifierKeys.None, OnHotkeyPressed);
-        }
-
-        public void ReleaseHotkey()
-        {
-            // 핫키 제거
-            HotkeyManager.Current.Remove(_hotkeyName);
-        }
-
-        private void OnHotkeyPressed(object sender, HotkeyEventArgs e)
-        {
-            Start();
-        }
 
         private KeyValuePair<Key, string> _selectedKey;
         public KeyValuePair<Key, string> SelectedKey
@@ -245,7 +221,6 @@ namespace MultiTimer
                 if (_selectedKey.Equals(value)) return;
                 _selectedKey = value;
                 OnPropertyChanged();
-                RegisterHotkey();
                 Console.WriteLine(_selectedKey.Key);
                 Console.WriteLine(_selectedKey.Value);
             }

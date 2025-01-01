@@ -21,7 +21,7 @@ namespace MultiTimer
 
         public string Name { get; set; }
         public Key Key { get; set; }
-        
+
         public TimeSpan ElapsedTime
         {
             get => _stopwatch.Elapsed;
